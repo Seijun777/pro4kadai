@@ -31,7 +31,7 @@ int main()
   for(i = 0; i < num; i++)
     fprintf(stdout,"%c ",dequeue());
 
-  fprintf(stdout,"\nPlease enter next text(MAX num:%d):",count);
+  fprintf(stdout,"\nPlease enter next text(MAX num:%d):",Q_size - count);
   c = getchar();
   while( ( c = getchar()) != '\n')
   {
