@@ -10,17 +10,19 @@ void init_Q()
 int stock_Q()
 {
   if(r > f)
-    return r - f ;
+    return r-f +1;
   if(r < f)
-    return (Q_size + r) - f ;
+    return (r + Q_size)-f +1;
+  else
+    return 0;
 }
 
 void enqueue(Q_type d)
 {
-  if(stock_Q() < Q_size)
+  if(stock_Q() -1 < Q_size)
   {
     r++;
-    if(r == Q_size)
+    if(r == Q_size -1)
       r = 0;
     Q[r] = d;
   }
@@ -34,11 +36,11 @@ void enqueue(Q_type d)
 Q_type dequeue()
 {
   int i = 0;
-  if( stock_Q() > 0)
+  if( stock_Q() -1 > 0)
   {
     i = f;
     f++;
-    if( f == Q_size)
+    if( f == Q_size-1 )
       f = 0;
     return Q[i];
   }
@@ -51,11 +53,7 @@ Q_type dequeue()
 
 void print_Q()
 {
-  getchar();
-
-  fprintf(stderr,"Queue all data : ");
-  while(stock_Q() != 0)
-  {
-    fprintf(stderr,"%c ",dequeue());
-  }
+  fprintf(stdout,"All Array Data : ");
+  while( stock_Q() -1 > 0)
+    fprintf(stdout,"%c ",dequeue());
 }
