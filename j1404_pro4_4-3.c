@@ -166,7 +166,7 @@ void replace_node(int x, int y)
   p = (LISTL *)malloc( sizeof(LISTL) );
   p = root.next;
 
-  while(p->next != &root)
+  while(p != &root)
   {
     if(p->data == x)  //データが見つかったら置き換える
       p->data = y;
@@ -196,7 +196,7 @@ int main()
   scanf("%d",&k);
   delete_node(k);
   print_list();      //リストの出力
-  
+
   //データの置き換え
   fprintf(stdout,"********Replace********\n");
   fprintf(stdout,"Input Search Data :");
