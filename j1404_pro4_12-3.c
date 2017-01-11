@@ -25,12 +25,10 @@ void downheap(int j,int k)
 
 void print_heap(int n)
 {
-  int l,m,a,i,j,k,x;
-  int count = 0;
+  int l,m,a,i,j;
+  int count = 1;
   a = 1;
   l = 0;
-  x = 1;
-
   while(n/a > 0)
   {
     a *= 2;
@@ -38,54 +36,45 @@ void print_heap(int n)
   }
   m = pow(2,l);
 
-  for(i = 0;i < m;i++)
+  for(i = 0;i < 2*m;i++)
   {
     fprintf(stdout,"=");
   }
   fprintf(stdout,"\n");
 
-  for(i = 1;i <= l;i++)
+  for(i = 1;i <= n;i++)
   {
-    for(j = 0;j < m/pow(2,i) -1;j++)
+    for(j = 0; j < m/pow(2,count) -1; j++)
     {
       fprintf(stdout,"  ");
-      count++;
     }
-    for(j = 0;j < pow(2,i);j++)
+    fprintf(stdout,"%2d ",d[i]);
+    for(j = 0; j < m/pow(2,count) -1; j++)
     {
-      fprintf(stdout,"%2d",d[++x]);
-      count++;
-      for(k = 0;k < m/pow(2,i-1) - 1;k++)
-      {
-        if(count >= m)
-          break;
-        fprintf(stdout,"  ");
-        count++;
-      }
+      fprintf(stdout,"  ");
     }
-    if(count >= m)
-      break;
-    else
-    {
-      while(count < m)
-        fprintf(stdout,"  ");
-    }
-    fprintf(stdout,"\n");
 
+    if(i == pow(2,count) - 1)
+    {
+      fprintf(stdout,"\n");
+      count++;
+    }
   }
-  return ;
+  fprintf(stdout,"\n\n");
 }
 
 void heap_sort(int n)
 {
   int i,j,k,t;
 
+  fprintf(stdout,"\n******Heap Down******\n");
   for(j = n/2;j >= 1;j--)
   {
-    print_heap(n);
     downheap(j,n);
+    print_heap(n);
   }
 
+  fprintf(stdout,"****** Sorting ******\n");
   k = n;
   while(k > 1)
   {
@@ -93,6 +82,7 @@ void heap_sort(int n)
     d[1] = d[k];
     d[k] = t;
     downheap(1,--k);
+    print_heap(n);
   }
 }
 
