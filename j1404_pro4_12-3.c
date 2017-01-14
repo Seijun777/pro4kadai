@@ -53,6 +53,7 @@ void print_heap(int n)
     {
       fprintf(stdout,"  ");
     }
+    fprintf(stdout,"  ");
 
     if(i == pow(2,count) - 1)
     {
